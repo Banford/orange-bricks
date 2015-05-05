@@ -11,10 +11,10 @@ A cheaper... less featured player in the online estate agent space.
 
 ## User Stories
 
-* As a seller I want to register to use the site so that I can sell property.
-* As a seller I want to log in to my account so that I can access my selling options.
-* As a buyer I want to register to use the site so that I can buy property.
-* As a buyer I want to log in to my account so that I can access my buying options.
+* As a seller I want to register to use the site so that I can sell property. - DONE
+* As a seller I want to log in to my account so that I can access my selling options. - DONE
+* As a buyer I want to register to use the site so that I can buy property. - DONE
+* As a buyer I want to log in to my account so that I can access my buying options. - DONE
 * As a seller I want to enter information about a property so that it can be provided to buyers when listing.
 * As a seller I want to list a property for sale so that it can be seen by buyers.
 * As a buyer I want to search for a property so that I can find a property that meets my needs.

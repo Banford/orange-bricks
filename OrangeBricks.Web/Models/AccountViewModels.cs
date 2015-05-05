@@ -79,6 +79,11 @@ namespace OrangeBricks.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Role { get; set; }
+
+        public IEnumerable<System.Web.Mvc.SelectListItem> PossibleRoles { get; set; }
     }
 
     public class ResetPasswordViewModel

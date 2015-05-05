@@ -23,6 +23,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Seller"))
+                        {
+                            <li>@Html.ActionLink("Create a listing", "Create", "Property")</li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -97,7 +97,8 @@ namespace OrangeBricks.Web.Controllers
         {
             var viewModel = new RegisterViewModel();
             viewModel.PossibleRoles = new string[] { "Buyer", "Seller" }
-                .Select(x => new SelectListItem{ Value = x, Text = x });
+                .Select(x => new SelectListItem{ Value = x, Text = x })
+                .AsEnumerable();
 
             return View(viewModel);
         }
@@ -116,6 +117,10 @@ namespace OrangeBricks.Web.Controllers
                 if (result.Succeeded)
                 {
                     var identityManager = new IdentityManager();
+                    if (!identityManager.RoleExists(model.Role))
+                    {
+                        identityManager.CreateRole(model.Role);
+                    }
                     identityManager.AddUserToRole(user.Id, model.Role);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -125,7 +130,9 @@ namespace OrangeBricks.Web.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            model.PossibleRoles = new string[] { "Buyer", "Seller" }
+                .Select(x => new SelectListItem { Value = x, Text = x })
+                .AsEnumerable();
             return View(model);
         }
 

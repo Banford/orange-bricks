@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeBricks.Web", "OrangeBricks.Web\OrangeBricks.Web.csproj", "{09E3AF0B-9370-4C77-97B4-427F77EE842A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeBricks.Web.Tests", "C:\Users\Nick\Documents\Visual Studio 2013\Projects\OrangeBricks.Web\OrangeBricks.Web.Tests\OrangeBricks.Web.Tests.csproj", "{AA9A9899-7AE8-4E5D-84C3-76BD96ACD229}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeBricks.Web.Tests", "OrangeBricks.Web.Tests\OrangeBricks.Web.Tests.csproj", "{AA9A9899-7AE8-4E5D-84C3-76BD96ACD229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

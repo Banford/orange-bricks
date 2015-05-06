@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using NSubstitute;
 using NUnit.Framework;
+using OrangeBricks.Web.Controllers.Property.Commands;
 using OrangeBricks.Web.Models;
 
 namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
@@ -29,29 +25,5 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
             // Assert
             context.Properties.Received(1).Add(Arg.Any<Models.Property>());
         }
-    }
-
-    public class CreatePropertyCommandHandler
-    {
-        private readonly IOrangeBricksContext _context;
-
-        public CreatePropertyCommandHandler(IOrangeBricksContext context)
-        {
-            _context = context;
-        }
-
-        public void Handle(CreatePropertyCommand command)
-        {
-            var property = new Models.Property
-            {
-               
-            };
-
-            _context.Properties.Add(property);
-        }
-    }
-
-    public class CreatePropertyCommand
-    {
     }
 }

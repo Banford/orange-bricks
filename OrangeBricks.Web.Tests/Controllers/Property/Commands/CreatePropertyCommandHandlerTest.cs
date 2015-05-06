@@ -33,14 +33,21 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
 
     public class CreatePropertyCommandHandler
     {
+        private readonly IOrangeBricksContext _context;
+
         public CreatePropertyCommandHandler(IOrangeBricksContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
         public void Handle(CreatePropertyCommand command)
         {
-            throw new NotImplementedException();
+            var property = new Models.Property
+            {
+               
+            };
+
+            _context.Properties.Add(property);
         }
     }
 

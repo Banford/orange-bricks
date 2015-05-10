@@ -21,5 +21,7 @@ namespace OrangeBricks.Web.Models
 
         [Required]
         public string SellerUserId { get; set; }
+
+        public bool IsListedForSale { get; set; }
     }
 }

@@ -38,8 +38,8 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
             var builder = new PropertiesViewModelBuilder(_context);
 
             var properties = new List<Models.Property>{
-                new Models.Property{ StreetName = "Smith Street"},
-                new Models.Property{ StreetName = "Jones Street"}
+                new Models.Property{ StreetName = "Smith Street", IsListedForSale = true },
+                new Models.Property{ StreetName = "Jones Street", IsListedForSale = true }
             };
 
             var mockSet = Substitute.For<IDbSet<Models.Property>>()

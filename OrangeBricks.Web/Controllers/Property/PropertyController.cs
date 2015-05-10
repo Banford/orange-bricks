@@ -79,5 +79,16 @@ namespace OrangeBricks.Web.Controllers.Property
             var viewModel = builder.Build(id);
             return View(viewModel);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Buyer")]
+        public ActionResult MakeOffer(MakeOfferCommand command)
+        {
+            var handler = new MakeOfferCommandHandler(_context);
+
+            handler.Handle(command);
+
+            return RedirectToAction("Index");
+        }
     }
 }

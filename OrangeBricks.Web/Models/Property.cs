@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrangeBricks.Web.Models
 {
@@ -23,5 +25,7 @@ namespace OrangeBricks.Web.Models
         public string SellerUserId { get; set; }
 
         public bool IsListedForSale { get; set; }
+
+        public ICollection<Offer> Offers { get; set; }
     }
 }

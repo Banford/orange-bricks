@@ -11,12 +11,14 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
     {
         private ListPropertyCommandHandler _handler;
         private IOrangeBricksContext _context;
+        private IDbSet<Models.Property> _properties;
 
         [SetUp]
         public void SetUp()
         {
             _context = Substitute.For<IOrangeBricksContext>();
-            _context.Properties.Returns(Substitute.For<IDbSet<Models.Property>>());
+            _properties = Substitute.For<IDbSet<Models.Property>>();
+            _context.Properties.Returns(_properties);
             _handler = new ListPropertyCommandHandler(_context);
         }
 
@@ -35,33 +37,15 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
                 IsListedForSale = false
             };
 
+            _properties.Find(1).Returns(property);
+
             // Act
             _handler.Handle(command);
 
             // Assert
-            _context.Properties.Received(1).Find(1).Returns(property);
+            _context.Properties.Received(1).Find(1);
             _context.Received(1).SaveChanges();
             Assert.True(property.IsListedForSale);
         }
-    }
-
-    public class ListPropertyCommandHandler
-    {
-        private readonly IOrangeBricksContext _context;
-
-        public ListPropertyCommandHandler(IOrangeBricksContext context)
-        {
-            _context = context;
-        }
-
-        public void Handle(ListPropertyCommand command)
-        {
-            
-        }
-    }
-
-    public class ListPropertyCommand
-    {
-        public int PropertyId { get; set; }
     }
 }

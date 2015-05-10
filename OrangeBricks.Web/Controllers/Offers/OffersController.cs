@@ -26,12 +26,20 @@ namespace OrangeBricks.Web.Controllers.Offers
         [HttpPost]        
         public ActionResult Accept(AcceptOfferCommand command)
         {
+            var handler = new AcceptOfferCommandHandler(_context);
+
+            handler.Handle(command);
+
             return RedirectToAction("OnProperty", new { id = command.PropertyId });
         }
 
         [HttpPost]
         public ActionResult Reject(RejectOfferCommand command)
         {
+            var handler = new RejectOfferCommandHandler(_context);
+
+            handler.Handle(command);
+
             return RedirectToAction("OnProperty", new { id = command.PropertyId });
         }
     }

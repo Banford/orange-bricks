@@ -23,23 +23,29 @@
         <div>
             <p><strong>Offer Amount: </strong> £@offer.Amount</p>
             <p><strong>Offer Made At: </strong> @offer.CreatedAt.ToLongTimeString() on @offer.CreatedAt.ToShortDateString()</p>
+            <p><strong>Status: </strong> @offer.Status</p>
         </div>
-        using (Html.BeginForm("Accept", "Offers"))
+
+        if (offer.IsPending)
         {
-            @Html.Hidden("PropertyId", Model.PropertyId)
-            @Html.Hidden("OfferId", offer.Id)
-            <p>
-                <input type="submit" class="btn btn-default" value="Accept Offer" />
-            </p>    
+            using (Html.BeginForm("Accept", "Offers"))
+            {
+                @Html.Hidden("PropertyId", Model.PropertyId)
+                @Html.Hidden("OfferId", offer.Id)
+                <p>
+                    <input type="submit" class="btn btn-default" value="Accept Offer" />
+                </p>
+            }
+            using (Html.BeginForm("Reject", "Offers"))
+            {
+                @Html.Hidden("PropertyId", Model.PropertyId)
+                @Html.Hidden("OfferId", offer.Id)
+                <p>
+                    <input type="submit" class="btn btn-default" value="Reject Offer" />
+                </p>
+            }
         }
-        using (Html.BeginForm("Reject", "Offers"))
-        {
-            @Html.Hidden("PropertyId", Model.PropertyId)
-            @Html.Hidden("OfferId", offer.Id)
-            <p>
-                <input type="submit" class="btn btn-default" value="Reject Offer" />
-            </p>
-        }
+
     }
 }
 else

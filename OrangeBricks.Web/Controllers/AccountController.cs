@@ -1,15 +1,12 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using OrangeBricks.Web.Models;
 using OrangeBricks.Web.Infrastructure;
+using OrangeBricks.Web.Models;
 
 namespace OrangeBricks.Web.Controllers
 {
@@ -17,10 +14,6 @@ namespace OrangeBricks.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-
-        public AccountController()
-        {
-        }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -81,8 +74,6 @@ namespace OrangeBricks.Web.Controllers
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");

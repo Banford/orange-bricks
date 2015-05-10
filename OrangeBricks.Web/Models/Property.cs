@@ -20,6 +20,6 @@ namespace OrangeBricks.Web.Models
         public int NumberOfBedrooms { get; set; }
 
         [Required]
-        public ApplicationUser Seller { get; set; }
+        public string SellerUserId { get; set; }
     }
 }

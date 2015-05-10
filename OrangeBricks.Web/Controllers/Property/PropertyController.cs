@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using OrangeBricks.Web.Controllers.Property.Commands;
 using OrangeBricks.Web.Controllers.Property.ViewModels;
 using OrangeBricks.Web.Models;
@@ -32,6 +33,8 @@ namespace OrangeBricks.Web.Controllers.Property
         public ActionResult Create(CreatePropertyCommand command)
         {
             var handler = new CreatePropertyCommandHandler(_context);
+
+            command.SellerUserId = User.Identity.GetUserId();
 
             handler.Handle(command);
 

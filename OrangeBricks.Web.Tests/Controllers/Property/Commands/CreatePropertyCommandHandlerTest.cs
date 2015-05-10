@@ -64,5 +64,54 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
             // Assert
             _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.StreetName == "Barnard Road"));
         }
+
+        [Test]
+        public void HandleShouldAddPropertyWithCorrectDescription()
+        {
+            // Arrange
+            var command = new CreatePropertyCommand
+            {
+                Description = "A fantastic property."
+            };
+
+            // Act
+            _handler.Handle(command);
+
+            // Assert
+            _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.Description == "A fantastic property."));
+        }
+
+        [Test]
+        public void HandleShouldAddPropertyWithCorrectNumberOfBedrooms()
+        {
+            // Arrange
+            var command = new CreatePropertyCommand
+            {
+                NumberOfBedrooms = 3
+            };
+
+            // Act
+            _handler.Handle(command);
+
+            // Assert
+            _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.NumberOfBedrooms == 3));
+        }
+
+        [Test]
+        public void HandleShouldAddPropertyWithCorrectSeller()
+        {
+            // Arrange
+            const string sellerUserId = "123";
+            var command = new CreatePropertyCommand
+            {
+                SellerUserId = sellerUserId
+            };
+
+            // Act
+            _handler.Handle(command);
+
+            // Assert
+            _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.SellerUserId == sellerUserId));
+        }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System.Web.Mvc;
+using OrangeBricks.Web.Controllers.Offers.Builders;
+using OrangeBricks.Web.Controllers.Offers.Commands;
 using OrangeBricks.Web.Models;
 
 namespace OrangeBricks.Web.Controllers.Offers
 {
+    [Authorize(Roles = "Seller")]
     public class OffersController : Controller
     {
         private readonly IOrangeBricksContext _context;
@@ -12,7 +15,6 @@ namespace OrangeBricks.Web.Controllers.Offers
             _context = context;
         }
 
-        [Authorize(Roles = "Seller")]
         public ActionResult OnProperty(int id)
         {
             var builder = new OffersOnPropertyViewModelBuilder(_context);
@@ -20,24 +22,17 @@ namespace OrangeBricks.Web.Controllers.Offers
 
             return View(viewModel);
         }
-    }
 
-    public class OffersOnPropertyViewModelBuilder
-    {
-        private readonly IOrangeBricksContext _context;
-
-        public OffersOnPropertyViewModelBuilder(IOrangeBricksContext context)
+        [HttpPost]        
+        public ActionResult Accept(AcceptOfferCommand command)
         {
-            _context = context;
+            return RedirectToAction("OnProperty", new { id = command.PropertyId });
         }
 
-        public OffersOnPropertyViewModel Build(int id)
+        [HttpPost]
+        public ActionResult Reject(RejectOfferCommand command)
         {
-            return new OffersOnPropertyViewModel();
+            return RedirectToAction("OnProperty", new { id = command.PropertyId });
         }
-    }
-
-    public class OffersOnPropertyViewModel
-    {
     }
 }

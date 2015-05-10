@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using OrangeBricks.Web.Controllers.Property.Builders;
@@ -83,11 +85,31 @@ namespace OrangeBricks.Web.Controllers.Property
 
         public PropertiesViewModel Build()
         {
-            return new PropertiesViewModel();
+            return new PropertiesViewModel
+            {
+                Properties = _context.Properties
+                    .Where(p => p.IsListedForSale)
+                    .ToList()
+                    .Select(MapViewModel)
+                    .ToList()
+            };
+        }
+
+        private static PropertyViewModel MapViewModel(Models.Property property)
+        {
+            return new PropertyViewModel
+            {
+                Id = property.Id,
+                StreetName = property.StreetName,
+                Description = property.Description,
+                NumberOfBedrooms = property.NumberOfBedrooms,
+                PropertyType = property.PropertyType
+            };
         }
     }
 
     public class PropertiesViewModel
     {
+        public List<PropertyViewModel> Properties { get; set; }
     }
 }

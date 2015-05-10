@@ -7,7 +7,12 @@
 
 <h2>Properties For Sale</h2>
 
+<p>Here is a list of properties for sale: </p>
 
-
-
-<p>Placeholder content for now...</p>
+@foreach (var property in Model.Properties)
+{
+    <hr/>
+    <h3>@property.StreetName</h3>
+    <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
+    <p>@property.Description</p>
+}

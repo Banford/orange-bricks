@@ -1,4 +1,4 @@
-﻿@model OrangeBricks.Web.Controllers.Offers.OffersOnPropertyViewModel
+﻿@model OrangeBricks.Web.Controllers.Offers.ViewModels.OffersOnPropertyViewModel
 
 @{
     ViewBag.Title = "Offers on Your Property";
@@ -8,3 +8,23 @@
 <h2>@ViewBag.Title</h2>
 
 <p>Here you can see the offers that have been made on your property.</p>
+
+<p><strong>Property type:</strong> @Model.PropertyType</p>
+<p><strong>Number of bedrooms:</strong> @Model.NumberOfBedrooms</p>
+<p><strong>Street name:</strong> @Model.StreetName</p>
+
+@if (Model.HasOffers)
+{
+    foreach (var offer in Model.Offers)
+    {
+        <div>
+            <p>@offer.Amount</p>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        This property has no offers yet!
+    </div>
+}

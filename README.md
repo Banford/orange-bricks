@@ -16,7 +16,7 @@ A cheaper... less featured player in the online estate agent space.
 * As a buyer I want to register to use the site so that I can buy property. - DONE
 * As a buyer I want to log in to my account so that I can access my buying options. - DONE
 * As a seller I want to enter information about a property so that it can be provided to buyers when listing. - DONE
-* As a seller I want to list a property for sale so that it can be seen by buyers.
+* As a seller I want to list a property for sale so that it can be seen by buyers. - DONE
 * As a buyer I want to search for a property so that I can find a property that meets my needs.
 * As a buyer I want to make an offer on a property so that the seller knows of my intent to purchase.
 * As a seller I want to accept an offer on a property so that I can agree to the sale of the property.

@@ -17,6 +17,15 @@ namespace OrangeBricks.Web.Controllers.Property
             _context = context;
         }
 
+        [Authorize]
+        public ActionResult Index()
+        {
+            var builder = new PropertiesViewModelBuilder(_context);
+            var viewModel = builder.Build();
+
+            return View(viewModel);
+        }
+
         [Authorize(Roles = "Seller")]
         public ActionResult Create()
         {
@@ -52,6 +61,7 @@ namespace OrangeBricks.Web.Controllers.Property
         }
 
         [HttpPost]
+        [Authorize(Roles = "Seller")]
         public ActionResult ListForSale(ListPropertyCommand command)
         {
             var handler = new ListPropertyCommandHandler(_context);
@@ -60,5 +70,24 @@ namespace OrangeBricks.Web.Controllers.Property
 
             return RedirectToAction("MyProperties");
         }
+    }
+
+    public class PropertiesViewModelBuilder
+    {
+        private readonly IOrangeBricksContext _context;
+
+        public PropertiesViewModelBuilder(IOrangeBricksContext context)
+        {
+            _context = context;
+        }
+
+        public PropertiesViewModel Build()
+        {
+            return new PropertiesViewModel();
+        }
+    }
+
+    public class PropertiesViewModel
+    {
     }
 }

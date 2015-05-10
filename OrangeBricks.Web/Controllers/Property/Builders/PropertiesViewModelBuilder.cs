@@ -22,7 +22,8 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
 
             if (!string.IsNullOrWhiteSpace(query.Search))
             {
-                properties = properties.Where(x => x.StreetName.Contains(query.Search));
+                properties = properties.Where(x => x.StreetName.Contains(query.Search) 
+                    || x.Description.Contains(query.Search));
             }
 
             return new PropertiesViewModel

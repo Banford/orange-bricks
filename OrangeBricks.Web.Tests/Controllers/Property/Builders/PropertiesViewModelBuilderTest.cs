@@ -38,8 +38,8 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
             var builder = new PropertiesViewModelBuilder(_context);
 
             var properties = new List<Models.Property>{
-                new Models.Property{ StreetName = "Smith Street", IsListedForSale = true },
-                new Models.Property{ StreetName = "Jones Street", IsListedForSale = true }
+                new Models.Property{ StreetName = "Smith Street", Description = "", IsListedForSale = true },
+                new Models.Property{ StreetName = "Jones Street", Description = "", IsListedForSale = true}
             };
 
             var mockSet = Substitute.For<IDbSet<Models.Property>>()
@@ -57,6 +57,35 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
 
             // Assert
             Assert.That(viewModel.Properties.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void BuildShouldReturnPropertiesWithMatchingDescriptionsWhenSearchTermIsProvided()
+        {
+            // Arrange
+            var builder = new PropertiesViewModelBuilder(_context);
+
+            var properties = new List<Models.Property>{
+                new Models.Property{ StreetName = "", Description = "Great location", IsListedForSale = true },
+                new Models.Property{ StreetName = "", Description = "Town house", IsListedForSale = true }
+            };
+
+            var mockSet = Substitute.For<IDbSet<Models.Property>>()
+                .Initialize(properties.AsQueryable());
+
+            _context.Properties.Returns(mockSet);
+
+            var query = new PropertiesQuery
+            {
+                Search = "Town"
+            };
+
+            // Act
+            var viewModel = builder.Build(query);
+
+            // Assert
+            Assert.That(viewModel.Properties.Count, Is.EqualTo(1));
+            Assert.That(viewModel.Properties.All(p => p.Description.Contains("Town")));
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace OrangeBricks.Web.Controllers.Property.ViewModels
 {
@@ -23,6 +21,6 @@ namespace OrangeBricks.Web.Controllers.Property.ViewModels
         [Display(Name = "Number of bedrooms")]
         public int NumberOfBedrooms { get; set; }
 
-        public IEnumerable<System.Web.Mvc.SelectListItem> PossiblePropertyTypes { get; set; }
+        public IEnumerable<SelectListItem> PossiblePropertyTypes { get; set; }
     }
 }

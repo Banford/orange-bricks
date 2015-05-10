@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OrangeBricks.Web.Models
 {
@@ -11,6 +7,19 @@ namespace OrangeBricks.Web.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        public string PropertyType { get; set; }
 
+        [Required]
+        public string StreetName { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public int NumberOfBedrooms { get; set; }
+
+        [Required]
+        public ApplicationUser Seller { get; set; }
     }
 }

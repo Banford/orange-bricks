@@ -25,5 +25,25 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
             // Assert
             context.Properties.Received(1).Add(Arg.Any<Models.Property>());
         }
+
+        [Test]
+        public void HandleShouldAddPropertyWithCorrectPropertyType()
+        {
+            // Arrange
+            var context = Substitute.For<IOrangeBricksContext>();
+            context.Properties.Returns(Substitute.For<IDbSet<Models.Property>>());
+            var handler = new CreatePropertyCommandHandler(context);
+
+            var command = new CreatePropertyCommand
+            {
+                PropertyType = "House"
+            };
+
+            // Act
+            handler.Handle(command);
+
+            // Assert
+            context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.PropertyType == "House"));
+        }
     }
 }

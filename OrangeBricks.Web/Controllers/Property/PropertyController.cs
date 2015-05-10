@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -20,10 +19,10 @@ namespace OrangeBricks.Web.Controllers.Property
         }
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(PropertiesQuery query)
         {
             var builder = new PropertiesViewModelBuilder(_context);
-            var viewModel = builder.Build();
+            var viewModel = builder.Build(query);
 
             return View(viewModel);
         }
@@ -72,44 +71,5 @@ namespace OrangeBricks.Web.Controllers.Property
 
             return RedirectToAction("MyProperties");
         }
-    }
-
-    public class PropertiesViewModelBuilder
-    {
-        private readonly IOrangeBricksContext _context;
-
-        public PropertiesViewModelBuilder(IOrangeBricksContext context)
-        {
-            _context = context;
-        }
-
-        public PropertiesViewModel Build()
-        {
-            return new PropertiesViewModel
-            {
-                Properties = _context.Properties
-                    .Where(p => p.IsListedForSale)
-                    .ToList()
-                    .Select(MapViewModel)
-                    .ToList()
-            };
-        }
-
-        private static PropertyViewModel MapViewModel(Models.Property property)
-        {
-            return new PropertyViewModel
-            {
-                Id = property.Id,
-                StreetName = property.StreetName,
-                Description = property.Description,
-                NumberOfBedrooms = property.NumberOfBedrooms,
-                PropertyType = property.PropertyType
-            };
-        }
-    }
-
-    public class PropertiesViewModel
-    {
-        public List<PropertyViewModel> Properties { get; set; }
     }
 }

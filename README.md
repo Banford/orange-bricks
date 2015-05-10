@@ -38,3 +38,9 @@ I've intentionally removed the controller tests provided. I prefer to move as mu
 
 ### Evening 2
 
+Limited for time this evening due to being out at a tech meetup. Decided to use the pomodoro technique and limit myself to a single pomodoro with an achieveable goal which was to implement the code required to pass the failing unit test I set up last time. This involved some setting up of dependency injection so that I could mock/substitute the database context.
+
+### Day 3
+
+
+

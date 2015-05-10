@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using OrangeBricks.Web.Models;
 
@@ -18,7 +19,10 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
 
             var offer = new Offer
             {
-                Amount = command.Offer
+                Amount = command.Offer,
+                Status = OfferStatus.Pending,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
             };
 
             if (property.Offers == null)

@@ -30,7 +30,8 @@ namespace OrangeBricks.Web.Controllers.Offers.Builders
                 Offers = offers.Select(x => new OfferViewModel
                 {
                     Id = x.Id,
-                    Amount = x.Amount
+                    Amount = x.Amount,
+                    CreatedAt = x.CreatedAt
                 }),
                 PropertyId = property.Id, 
                 PropertyType = property.PropertyType,

@@ -22,6 +22,7 @@
         <hr/>
         <div>
             <p><strong>Offer Amount: </strong> £@offer.Amount</p>
+            <p><strong>Offer Made At: </strong> @offer.CreatedAt.ToLongTimeString() on @offer.CreatedAt.ToShortDateString()</p>
         </div>
         using (Html.BeginForm("Accept", "Offers"))
         {

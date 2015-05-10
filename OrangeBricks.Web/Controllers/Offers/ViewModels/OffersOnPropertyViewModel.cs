@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace OrangeBricks.Web.Controllers.Offers.ViewModels
@@ -16,5 +17,6 @@ namespace OrangeBricks.Web.Controllers.Offers.ViewModels
     {
         public int Id;
         public int Amount { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

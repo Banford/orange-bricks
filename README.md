@@ -42,5 +42,6 @@ Limited for time this evening due to being out at a tech meetup. Decided to use 
 
 ### Day 3
 
+Finally some time to sit down and get some progress made on the user stories. Got held up on setting up the DI framework to work with the built in authentication. It was a bad decision to use an unfamiliar DI framework! Once that was out of the way implementing tests for commands and intentionally not testing ViewModelBuilders (for pure speed) meant that a couple more of the user stories we're implemented quite quickly.
 
 

@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201505062111239_AddPropertiesTable.Designer.cs">
       <DependentUpon>201505062111239_AddPropertiesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505100925257_AddPropertiesFields.cs" />
+    <Compile Include="Migrations\201505100925257_AddPropertiesFields.Designer.cs">
+      <DependentUpon>201505100925257_AddPropertiesFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -261,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505062111239_AddPropertiesTable.resx">
       <DependentUpon>201505062111239_AddPropertiesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505100925257_AddPropertiesFields.resx">
+      <DependentUpon>201505100925257_AddPropertiesFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

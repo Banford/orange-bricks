@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using OrangeBricks.Web.Controllers.Property.Builders;
 using OrangeBricks.Web.Controllers.Property.Commands;
 using OrangeBricks.Web.Controllers.Property.ViewModels;
 using OrangeBricks.Web.Models;
@@ -50,45 +50,15 @@ namespace OrangeBricks.Web.Controllers.Property
 
             return View(viewModel);
         }
-    }
 
-    public class MyPropertiesViewModelBuilder
-    {
-        private readonly IOrangeBricksContext _context;
-
-        public MyPropertiesViewModelBuilder(IOrangeBricksContext context)
+        [HttpPost]
+        public ActionResult ListForSale(ListPropertyCommand command)
         {
-            _context = context;
+            var handler = new ListPropertyCommandHandler(_context);
+
+            handler.Handle(command);
+
+            return RedirectToAction("MyProperties");
         }
-
-        public MyPropertiesViewModel Build(string sellerId)
-        {
-            return new MyPropertiesViewModel
-            {
-                Properties = _context.Properties
-                    .Where(p => p.SellerUserId == sellerId)
-                    .Select(p => new PropertyViewModel
-                    {
-                        StreetName = p.StreetName,
-                        Description = p.Description,
-                        NumberOfBedrooms = p.NumberOfBedrooms,
-                        PropertyType = p.PropertyType
-                    })
-                    .ToList()
-            };
-        }
-    }
-
-    public class PropertyViewModel
-    {
-        public string StreetName { get; set; }
-        public string Description { get; set; }
-        public int NumberOfBedrooms { get; set; }
-        public string PropertyType { get; set; }
-    }
-
-    public class MyPropertiesViewModel
-    {
-        public List<PropertyViewModel> Properties { get; set; }
     }
 }

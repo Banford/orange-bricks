@@ -75,7 +75,38 @@ namespace OrangeBricks.Web.Controllers.Property
         [Authorize(Roles = "Buyer")]
         public ActionResult MakeOffer(int id)
         {
-            return View();
+            var builder = new MakeOfferViewModelBuilder(_context);
+            var viewModel = builder.Build(id);
+            return View(viewModel);
         }
+    }
+
+    public class MakeOfferViewModelBuilder
+    {
+        private readonly IOrangeBricksContext _context;
+
+        public MakeOfferViewModelBuilder(IOrangeBricksContext context)
+        {
+            _context = context;
+        }
+
+        public MakeOfferViewModel Build(int id)
+        {
+            var property = _context.Properties.Find(id);
+
+            return new MakeOfferViewModel
+            {
+                PropertyType = property.PropertyType,
+                StreetName = property.StreetName,
+                Offer = 100000 // TODO: property.SuggestedAskingPrice
+            };
+        }
+    }
+
+    public class MakeOfferViewModel
+    {
+        public string PropertyType { get; set; }
+        public string StreetName { get; set; }
+        public int Offer { get; set; }
     }
 }

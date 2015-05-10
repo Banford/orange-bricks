@@ -15,10 +15,14 @@
     <h3>@property.StreetName</h3>
     <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
     <p>@property.Description</p>
-    
-    using (Html.BeginForm("ListForSale", "Property"))
+        
+    if (!property.IsListedForSale)
     {
-        @Html.Hidden("PropertyId", property.Id)
-        <input type="submit" value="List Property For Sale"/>
+        using (Html.BeginForm("ListForSale", "Property"))
+        {
+            @Html.Hidden("PropertyId", property.Id)
+            <input class="btn btn-primary" type="submit" value="List Property For Sale" />
+        }
     }
+
 }

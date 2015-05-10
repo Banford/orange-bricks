@@ -25,7 +25,8 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                         StreetName = p.StreetName,
                         Description = p.Description,
                         NumberOfBedrooms = p.NumberOfBedrooms,
-                        PropertyType = p.PropertyType
+                        PropertyType = p.PropertyType,
+                        IsListedForSale = p.IsListedForSale
                     })
                     .ToList()
             };

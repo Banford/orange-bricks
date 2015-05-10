@@ -9,41 +9,60 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
     [TestFixture]
     public class CreatePropertyCommandHandlerTest
     {
+        private CreatePropertyCommandHandler _handler;
+        private IOrangeBricksContext _context;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _context = Substitute.For<IOrangeBricksContext>();
+            _context.Properties.Returns(Substitute.For<IDbSet<Models.Property>>());
+            _handler = new CreatePropertyCommandHandler(_context);
+        }
+
         [Test]
         public void HandleShouldAddProperty()
         {
             // Arrange
-            var context = Substitute.For<IOrangeBricksContext>();
-            context.Properties.Returns(Substitute.For<IDbSet<Models.Property>>());
-            var handler = new CreatePropertyCommandHandler(context);
-
             var command = new CreatePropertyCommand();
 
             // Act
-            handler.Handle(command);
+            _handler.Handle(command);
 
             // Assert
-            context.Properties.Received(1).Add(Arg.Any<Models.Property>());
+            _context.Properties.Received(1).Add(Arg.Any<Models.Property>());
         }
 
         [Test]
         public void HandleShouldAddPropertyWithCorrectPropertyType()
         {
             // Arrange
-            var context = Substitute.For<IOrangeBricksContext>();
-            context.Properties.Returns(Substitute.For<IDbSet<Models.Property>>());
-            var handler = new CreatePropertyCommandHandler(context);
-
             var command = new CreatePropertyCommand
             {
                 PropertyType = "House"
             };
 
             // Act
-            handler.Handle(command);
+            _handler.Handle(command);
 
             // Assert
-            context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.PropertyType == "House"));
+            _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.PropertyType == "House"));
+        }
+
+        [Test]
+        public void HandleShouldAddPropertyWithCorrectStreetName()
+        {
+            // Arrange
+            var command = new CreatePropertyCommand
+            {
+                StreetName = "Barnard Road"
+            };
+
+            // Act
+            _handler.Handle(command);
+
+            // Assert
+            _context.Properties.Received(1).Add(Arg.Is<Models.Property>(x => x.StreetName == "Barnard Road"));
         }
     }
 }

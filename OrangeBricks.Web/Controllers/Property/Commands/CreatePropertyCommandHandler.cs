@@ -15,7 +15,8 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
         {
             var property = new Models.Property
             {
-               PropertyType = command.PropertyType
+               PropertyType = command.PropertyType,
+               StreetName = command.StreetName
             };
 
             _context.Properties.Add(property);

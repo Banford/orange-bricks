@@ -71,5 +71,11 @@ namespace OrangeBricks.Web.Controllers.Property
 
             return RedirectToAction("MyProperties");
         }
+
+        [Authorize(Roles = "Buyer")]
+        public ActionResult MakeOffer(int id)
+        {
+            return View();
+        }
     }
 }
